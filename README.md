@@ -43,3 +43,11 @@ The project relies solely on Python's standard libraries (`tkinter`, `heapq`, `t
 - `heuristics.py`: Manhattan and Euclidean distance functions.
 - `grid.py`: Utility for generating the initial grid.
 - `README.md`: Project documentation and instructions.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+**Developed by Umar Younas**
