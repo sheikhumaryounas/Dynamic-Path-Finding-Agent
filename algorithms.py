@@ -44,7 +44,7 @@ def greedy_search(grid, start, goal, heuristic):
     while open_list:
         _, current = heapq.heappop(open_list)
         if current.position == goal:
-            return reconstruct_path(current), visited, nodes_expanded, (time.time() - start_time)*1000
+            return reconstruct_path(current), visited, set([item[1].position for item in open_list]), nodes_expanded, (time.time() - start_time)*1000
 
         if current.position in visited: continue
         visited.add(current.position)
@@ -56,7 +56,7 @@ def greedy_search(grid, start, goal, heuristic):
                 node.h = heuristic(neighbor, goal)
                 node.f = node.h
                 heapq.heappush(open_list, (node.f, node))
-    return None, visited, nodes_expanded, 0
+    return None, visited, set([item[1].position for item in open_list]), nodes_expanded, 0
 
 def a_star(grid, start, goal, heuristic):
     start_time = time.time()
@@ -72,7 +72,7 @@ def a_star(grid, start, goal, heuristic):
     while open_list:
         _, current = heapq.heappop(open_list)
         if current.position == goal:
-            return reconstruct_path(current), set(closed_list.keys()), nodes_expanded, (time.time() - start_time)*1000
+            return reconstruct_path(current), set(closed_list.keys()), set([item[1].position for item in open_list]), nodes_expanded, (time.time() - start_time)*1000
 
         if current.position in closed_list and closed_list[current.position] <= current.g:
             continue
@@ -88,4 +88,4 @@ def a_star(grid, start, goal, heuristic):
             node.f = node.g + node.h
             heapq.heappush(open_list, (node.f, node))
             
-    return None, set(closed_list.keys()), nodes_expanded, 0
+    return None, set(closed_list.keys()), set([item[1].position for item in open_list]), nodes_expanded, 0
